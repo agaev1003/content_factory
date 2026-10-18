@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контент-завод · макет</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#library"><span class="monogram">КЗ</span><span>Контент-завод<small>Личный кабинет</small></span></a>
+      <nav aria-label="Разделы">
+        <button class="nav active" data-view="library" aria-current="page">Ролики <span id="nav-count">3</span></button>
+        <button class="nav" data-view="schedule">Расписание</button>
+        <button class="nav" data-view="connections">Подключения</button>
+      </nav>
+      <div class="side-note"><span class="pill">Макет</span><p>Показывает будущий процесс.<br>Ничего не публикует.</p><a href="https://github.com/agaev1003/content_factory/blob/codex/content-factory-research/docs/research-2026-10-18.md" target="_blank" rel="noopener noreferrer">Материалы исследования ↗</a></div>
+    </aside>
+    <main>
+      <header class="topbar"><span>Готовые ролики → три площадки</span><span>Москва · UTC+3</span></header>
+      <div class="workspace">
+        <section id="view-library">
+          <div class="page-heading"><div><p class="eyebrow">ВАША МЕДИАТЕКА</p><h1>Контент готов. Осталось выпустить.</h1><p class="sub">Соберите очередь один раз — проверьте, куда и когда пойдёт каждый ролик.</p></div><button class="primary" id="upload">＋ Добавить MP4</button></div>
+          <input type="file" id="files" accept="video/mp4,.mp4" multiple hidden>
+          <div class="notice">Это интерактивный макет. Примеры условные; выбранные файлы остаются на вашем компьютере. После обновления страницы изменения исчезнут.</div>
+          <div class="content-grid">
+            <div class="library">
+              <div class="list-heading"><h2>Очередь роликов</h2><span id="library-count"></span></div>
+              <div id="video-list"></div>
+              <button class="secondary wide" id="show-schedule">Посмотреть ближайшие выходы →</button>
+            </div>
+            <section class="editor" aria-labelledby="editor-heading">
+              <div class="editor-heading"><span class="eyebrow">КАРТОЧКА РОЛИКА</span><span class="pill">Черновик</span></div>
+              <h2 id="editor-heading"></h2>
+              <div id="media-preview"></div>
+              <label>Название для себя<input id="video-title" maxlength="120"></label>
+              <div class="platform-tabs" role="group" aria-label="Площадка для подписи">
+                <button data-platform="instagram" aria-pressed="true">Instagram</button>
+                <button data-platform="tiktok" aria-pressed="false">TikTok</button>
+                <button data-platform="youtube" aria-pressed="false">YouTube</button>
+              </div>
+              <label id="youtube-title-label" hidden>Заголовок YouTube<input id="youtube-title" maxlength="100"></label>
+              <label>Подпись<textarea id="caption" rows="5" placeholder="О чём ролик и что зрителю делать дальше"></textarea></label>
+              <div class="editor-actions"><button class="text-button" id="copy-caption">Применить подпись ко всем</button><span id="char-count"></span></div>
+              <fieldset><legend>Где разместить</legend><div class="checks">
+                <label><input type="checkbox" data-channel="instagram" checked> Reels</label>
+                <label><input type="checkbox" data-channel="tiktok" checked> TikTok</label>
+                <label><input type="checkbox" data-channel="youtube" checked> Shorts</label>
+              </div></fieldset>
+              <p class="helper">Подписи редактируются вручную. В рабочей версии их сможет подготовить ИИ по вашему сценарию, после чего вы их проверите.</p>
+            </section>
+          </div>
+        </section>
+        <section id="view-schedule" hidden>
+          <div class="page-heading"><div><p class="eyebrow">ПЛАН ПУБЛИКАЦИЙ</p><h1>Ближайшие выходы</h1><p class="sub">Ролики по порядку занимают выбранные дни. Время указано по Москве.</p></div><button class="secondary" id="export-plan">Скачать пример плана</button></div>
+          <div class="notice">Предварительный расчёт. Аккаунты не подключены, задачи на публикацию не создаются.</div>
+          <div class="rule"><label>Начать с<input type="date" id="start-date" required></label><label>Время<input type="time" id="post-time" value="19:00" required></label><fieldset><legend>Дни недели</legend><div class="weekdays" id="weekdays"></div></fieldset></div>
+          <div class="plan-heading"><h2 id="plan-summary"></h2><span class="pill">Публикация отключена</span></div>
+          <div id="plan-list"></div>
+        </section>
+        <section id="view-connections" hidden>
+          <div class="page-heading"><div><p class="eyebrow">ДОСТАВКА КОНТЕНТА</p><h1>Подключения — следующий шаг</h1><p class="sub">Сначала проверим публикацию на ваших трёх аккаунтах через выбранный сервис.</p></div></div>
+          <div class="connections" id="connections-list"></div>
+          <section class="connection-note"><h2>Предлагаемый путь</h2><p>Свой кабинет хранит материалы и план. Готовый сервис берёт на себя отправку в соцсети. Первым проверяем Postiz; вторым кандидатом остаётся TryPost.</p><p>В Фазе для упрощённого подключения используется Metricool. У самостоятельной установки есть отдельная задача: получить разрешения платформ, особенно TikTok.</p><a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener noreferrer">Открыть Postiz на GitHub ↗</a></section>
+        </section>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
