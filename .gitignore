@@ -1,0 +1,9 @@
+research/private/
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
+*.pyc
+data/
+node_modules/
